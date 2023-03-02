@@ -15,6 +15,9 @@
     <div id="header">
       <h1 onclick="location.replace('./index.html')">우리 동네 맛집</h1>
       <div></div>
+      <p class="alertContainer">
+        <span id="msg"></span>
+    </p>
     </div>
     <div id="nav">
       <ul>
@@ -25,7 +28,7 @@
           <a href="./pages/restaurant/add.html" class="active">맛집 추가</a>
         </li>
         <li class="login_status login_status_y">
-          <a href="./pages/logout.html" class="active">로그아웃</a>
+          <a href="#" class="active" onclick="logout()">로그아웃</a>
         </li>
         <li class="login_status login_status_n">
           <a href="./pages/login.html" class="active">로그인</a>

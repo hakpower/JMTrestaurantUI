@@ -5,14 +5,17 @@ function add() {
 
   if (!name || name == "") {
     $("#name").focus();
+    showAlert('맛집 이름을 입력하세요.', 2);
     return false;
   }
   if (!addr || addr == "") {
     $("#addr").focus();
+    showAlert('주소를 입력하세요.', 2);
     return false;
   }
   if (!content || content == "") {
     $("#content").focus();
+    showAlert('소개글을 입력하세요.', 2);
     return false;
   }
 
@@ -33,6 +36,7 @@ function add() {
       if (result.status == "success") {
         if (result.resultCode) {
           location.replace("./index.html");
+          localStorage.setItem('redirectShowAlert','addComplete');
         }
       }
     },

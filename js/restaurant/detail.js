@@ -63,14 +63,17 @@ function edit() {
 
   if (!name || name == "") {
     $("#name").focus();
+    showAlert('맛집 이름을 입력하세요.', 2);
     return false;
   }
   if (!addr || addr == "") {
     $("#addr").focus();
+    showAlert('주소를 입력하세요.', 2);
     return false;
   }
   if (!content || content == "") {
     $("#content").focus();
+    showAlert('소개글을 입력하세요.', 2);
     return false;
   }
 
@@ -92,6 +95,7 @@ function edit() {
       if (result.status == "success") {
         if (result.resultCode) {
           location.replace("./index.html");
+          localStorage.setItem('redirectShowAlert','editComplete');
         }
       }
     },
@@ -99,25 +103,28 @@ function edit() {
 }
 
 function remove() {
-  $.ajax({
-    url: "http://localhost:8080/JMTrestaurantAPI/api/restaurant/remove",
-    dataType: "json",
-    type: "post",
-    data: {
-      r_id: r_id,
-    },
-    headers: {
-      auth_check: "yes",
-      auth_token: localStorage.getItem("auth_token"),
-    },
-    success: function (result) {
-      if (result.status == "success") {
-        if (result.resultCode) {
-          location.replace("./index.html");
+  if(confirm('해당 게시글을 정말 삭제하시겠습니까?')){
+    $.ajax({
+      url: "http://localhost:8080/JMTrestaurantAPI/api/restaurant/remove",
+      dataType: "json",
+      type: "post",
+      data: {
+        r_id: r_id,
+      },
+      headers: {
+        auth_check: "yes",
+        auth_token: localStorage.getItem("auth_token"),
+      },
+      success: function (result) {
+        if (result.status == "success") {
+          if (result.resultCode) {
+            location.replace("./index.html");
+            localStorage.setItem('redirectShowAlert','removeComplete');
+          }
         }
-      }
-    },
-  });
+      },
+    });
+  }
 }
 
 function getParameters() {
