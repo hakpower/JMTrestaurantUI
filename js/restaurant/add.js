@@ -5,22 +5,22 @@ function add() {
 
   if (!name || name == "") {
     $("#name").focus();
-    showAlert('맛집 이름을 입력하세요.', 2);
+    showAlert("맛집 이름을 입력하세요.", 2);
     return false;
   }
   if (!addr || addr == "") {
     $("#addr").focus();
-    showAlert('주소를 입력하세요.', 2);
+    showAlert("주소를 입력하세요.", 2);
     return false;
   }
   if (!content || content == "") {
     $("#content").focus();
-    showAlert('소개글을 입력하세요.', 2);
+    showAlert("소개글을 입력하세요.", 2);
     return false;
   }
 
   $.ajax({
-    url: "http://localhost:8080/JMTrestaurantAPI/api/restaurant/add",
+    url: apiHostname + "/JMTrestaurantAPI/api/restaurant/add",
     dataType: "json",
     type: "post",
     data: {
@@ -36,7 +36,7 @@ function add() {
       if (result.status == "success") {
         if (result.resultCode) {
           location.replace("./index.html");
-          localStorage.setItem('redirectShowAlert','addComplete');
+          localStorage.setItem("redirectShowAlert", "addComplete");
         }
       }
     },

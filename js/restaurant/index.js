@@ -26,7 +26,7 @@ function clickPage(PageNum) {
 
 function getList() {
   $.ajax({
-    url: "http://localhost:8080/JMTrestaurantAPI/api/restaurant/list",
+    url: apiHostname + "/JMTrestaurantAPI/api/restaurant/list",
     type: "post",
     dataType: "json",
     data: {

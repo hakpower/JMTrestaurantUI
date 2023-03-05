@@ -9,7 +9,7 @@ $(function () {
 
 function getDetail() {
   $.ajax({
-    url: "http://localhost:8080/JMTrestaurantAPI/api/restaurant/detail",
+    url: apiHostname + "/JMTrestaurantAPI/api/restaurant/detail",
     dataType: "json",
     type: "post",
     data: {
@@ -30,7 +30,7 @@ function getDetail() {
 
         if (localStorage.getItem("auth_token")) {
           $.ajax({
-            url: "http://localhost:8080/JMTrestaurantAPI/api/member/detail",
+            url: apiHostname + "/JMTrestaurantAPI/api/member/detail",
             dataType: "json",
             type: "post",
             headers: {
@@ -63,22 +63,22 @@ function edit() {
 
   if (!name || name == "") {
     $("#name").focus();
-    showAlert('맛집 이름을 입력하세요.', 2);
+    showAlert("맛집 이름을 입력하세요.", 2);
     return false;
   }
   if (!addr || addr == "") {
     $("#addr").focus();
-    showAlert('주소를 입력하세요.', 2);
+    showAlert("주소를 입력하세요.", 2);
     return false;
   }
   if (!content || content == "") {
     $("#content").focus();
-    showAlert('소개글을 입력하세요.', 2);
+    showAlert("소개글을 입력하세요.", 2);
     return false;
   }
 
   $.ajax({
-    url: "http://localhost:8080/JMTrestaurantAPI/api/restaurant/edit",
+    url: apiHostname + "/JMTrestaurantAPI/api/restaurant/edit",
     dataType: "json",
     type: "post",
     data: {
@@ -95,7 +95,7 @@ function edit() {
       if (result.status == "success") {
         if (result.resultCode) {
           location.replace("./index.html");
-          localStorage.setItem('redirectShowAlert','editComplete');
+          localStorage.setItem("redirectShowAlert", "editComplete");
         }
       }
     },
@@ -103,9 +103,9 @@ function edit() {
 }
 
 function remove() {
-  if(confirm('해당 게시글을 정말 삭제하시겠습니까?')){
+  if (confirm("해당 게시글을 정말 삭제하시겠습니까?")) {
     $.ajax({
-      url: "http://localhost:8080/JMTrestaurantAPI/api/restaurant/remove",
+      url: apiHostname + "/JMTrestaurantAPI/api/restaurant/remove",
       dataType: "json",
       type: "post",
       data: {
@@ -119,7 +119,7 @@ function remove() {
         if (result.status == "success") {
           if (result.resultCode) {
             location.replace("./index.html");
-            localStorage.setItem('redirectShowAlert','removeComplete');
+            localStorage.setItem("redirectShowAlert", "removeComplete");
           }
         }
       },
